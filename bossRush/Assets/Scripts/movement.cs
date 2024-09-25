@@ -26,6 +26,9 @@ public class movement : MonoBehaviour
 
 
     public SpriteRenderer spriteRenderer;
+
+
+    private Player PlayerScript;
     // Update is called once per frame
 
     private void Awake()
@@ -34,7 +37,7 @@ public class movement : MonoBehaviour
         sceneCamera = Camera.GetComponent<Camera>();
         isDashing = false;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-
+        PlayerScript = gameObject.GetComponent<Player>();
 
     }
     void Update()
@@ -53,14 +56,16 @@ public class movement : MonoBehaviour
             isDashing = true;
             once = false;
             dashcooldown = dashcooldownTime;
+            PlayerScript.invincible = true;
         }
 
             if (isDashing)
         {
             spriteRenderer.color = new Color(0.776f, 0.909f, 1f);
+
             if (!once)
             {
-                moveSpeed *= 3;
+                moveSpeed *= 2;
                 timeDashing = 0;
                 once = true;
             }
@@ -68,8 +73,9 @@ public class movement : MonoBehaviour
             if (timeDashing >= timeDashingTime)
             {
                 spriteRenderer.color = new Color(0.376f, 0.753f, 1f);
+                PlayerScript.invincible = false;
                 isDashing = false;
-                moveSpeed /= 3;
+                moveSpeed /= 2;
             }
         }
             if (dashcooldown > 0)
