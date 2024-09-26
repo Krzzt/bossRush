@@ -145,13 +145,19 @@ public class Boss0 : MonoBehaviour
 
     public void move()
     {
-
+        if (!attack1active)
+        {
+            Vector2 direction = PlayerObject.transform.position - transform.position;
+            direction.Normalize();
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            gameObject.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        }
         float xpos = 0;
         float ypos = 0;
-        if (frames % Random.Range(10, 60) == 0)
+        if (frames % Random.Range(5, 10) == 0)
         {
-            xpostomove = Random.Range(-100, 101);
-            ypostomove = Random.Range(-100, 101);
+            xpostomove += Random.Range(-10, 11);
+            ypostomove += Random.Range(-10, 11);
 
 
         }

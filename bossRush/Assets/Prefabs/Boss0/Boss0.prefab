@@ -200,7 +200,7 @@ MonoBehaviour:
   speed: 3
   frames: 0
   currPhase: 1
-  movetimer: 1
+  movetimer: 4
   timebetweenmoves: 0
   bulletTransform:
   - {fileID: 8770086671383946996}
@@ -216,6 +216,7 @@ MonoBehaviour:
   time: 0
   attack1active: 0
   attack2active: 0
+  attack3active: 0
   amountBullets: 0
   direction: 0
 --- !u!50 &992186807442536578
