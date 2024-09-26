@@ -417,6 +417,7 @@ MonoBehaviour:
   timeDashingTime: 0.15
   isDashing: 0
   once: 0
+  playerSprite: {fileID: 0}
   spriteRenderer: {fileID: 0}
 --- !u!114 &1608617972288317014
 MonoBehaviour:
@@ -446,7 +447,7 @@ MonoBehaviour:
   - {fileID: 2082681990054761322}
   - {fileID: 8563068271832894320}
   GameOverScreen: {fileID: 6172070717500071132, guid: a6be6192f87c9e64ba082b79b4042707, type: 3}
-  PlayerSprite: {fileID: 8938909932889988118}
+  PlayerSprite: {fileID: 2708098918695421694}
 --- !u!50 &6718519571654805168
 Rigidbody2D:
   serializedVersion: 4

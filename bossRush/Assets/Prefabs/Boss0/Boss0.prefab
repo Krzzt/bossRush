@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c667b953fe1718b4d9dbbd6760645d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
   healthIncrease: 195
 --- !u!61 &8549524991569346175
 BoxCollider2D:
@@ -197,7 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74753179bda091d48aa9a0f13877b0ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  bossID: 0
+  speed: 1
   frames: 0
   currPhase: 1
   movetimer: 4

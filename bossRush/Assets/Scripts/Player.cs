@@ -29,7 +29,9 @@ public class Player : MonoBehaviour
     public GameObject PlayerSprite;
     private void Awake()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
+
+        spriteRenderer = PlayerSprite.GetComponent<SpriteRenderer>();
         SetHearts();
         Time.timeScale = 1.0f;
 
@@ -70,7 +72,14 @@ public class Player : MonoBehaviour
         {
             Shoot();
         }
-        if (Input.GetMouseButtonDown(1) && !ParryActive && ParryCooldown <= 0)
+        //MY RIGHT CLICK DOESNT INPUT???
+        if (Input.GetKeyDown(KeyCode.Mouse1)){
+            Debug.Log("Right Click");
+            Debug.Log("current ParryActive state: " + ParryActive);
+            Debug.Log("current Parry Cooldown: " + ParryCooldown);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !ParryActive && ParryCooldown <= 0)
         {
             ParryActive = true;
             ParryTime = 0.5f;
@@ -80,12 +89,12 @@ public class Player : MonoBehaviour
         if (ParryActive && ParryTime > 0)
         {
             ParryTime -= Time.fixedDeltaTime;
-            spriteRenderer.color = new Color(0.776f, 0.909f, 1f);
+            spriteRenderer.color = new Color(0.576f, 0.709f, 0.8f);
 
         }
         else if (ParryActive && ParryTime <= 0)
         {
-            spriteRenderer.color = new Color(0.376f, 0.753f, 1f);
+            spriteRenderer.color = new Color(1, 1, 1f);
             ParryActive = false;
         }
 

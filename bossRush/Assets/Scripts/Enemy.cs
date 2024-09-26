@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int ID;
     public UnitHealth EnemyHealth = new UnitHealth(5, 5);
 
 

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Profiling;
 using UnityEngine;
 
 public class Boss0 : MonoBehaviour
 {
+    public int bossID;
+
     private GameObject PlayerObject;
 
     public int speed;
@@ -81,9 +82,30 @@ public class Boss0 : MonoBehaviour
         }
         else if (attack2active)
         {
+            int shotAmount = 0;
+
+            time += Time.fixedDeltaTime;
+            if (time >= 1.2f)
+            {
+                GameObject[] bullets = new GameObject[20];
+                for (int i = 0; i < bullets.Length; i++)
+                {
+
+                    bullets[i] = Instantiate(bulletPrefab, bulletTransform[1].position, bulletTransform[1].rotation);
+                    bullets[i].transform.Rotate(0, 0, Random.Range(-20, 21));
+                    bullets[i].GetComponent<Rigidbody2D>().AddForce(bullets[i].transform.up * bulletFireForce, ForceMode2D.Impulse);
+                 
+                }
 
 
-            attack2active = false;
+                time = 0;
+            }
+
+            if (shotAmount >= 6)
+            {
+                attack2active = false;
+            }
+          
         }
         else if (attack3active)
         {
@@ -171,10 +193,5 @@ public class Boss0 : MonoBehaviour
        
     }
 
-    public static Vector2 CatmullRomTangent(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t)
-    {
-        return 0.5f * ((-p1 + p3) + 2f * (2f * p1 - 5f * p2 + 4f * p3 - p4) * t + 3f *
-                  (-p1 + 3f * p2 - 3f * p3 + p4) * Mathf.Pow(t, 2f));
-    }
 
 }
