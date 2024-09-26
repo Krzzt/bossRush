@@ -10,15 +10,24 @@ public class bullet : MonoBehaviour
 
     private void Awake()
     {
-        PlayerObject = GameObject.FindWithTag("Player");
+        PlayerObject = GameObject.FindWithTag("player");
         playerScript = PlayerObject.GetComponent<Player>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (tag.Equals("Enemy"))
+
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemyToDamage = collision.gameObject.GetComponent<Enemy>();
-            enemyToDamage.TakeDamage(playerScript.damage);
+            if (gameObject.CompareTag("ParryBullet"))
+            {
+                enemyToDamage.TakeDamage(playerScript.parryDamage);
+            }
+            else if (gameObject.CompareTag("Bullet"))
+            {
+                enemyToDamage.TakeDamage(playerScript.damage);
+            }
+
         }
     }
     // Start is called before the first frame update

@@ -154,11 +154,10 @@ public class Boss0 : MonoBehaviour
         }
         float xpos = 0;
         float ypos = 0;
-        if (frames % Random.Range(5, 10) == 0)
+        if (frames % Random.Range(20, 60) == 0)
         {
-            xpostomove += Random.Range(-10, 11);
-            ypostomove += Random.Range(-10, 11);
-
+            xpostomove = Random.Range(-100, 101);
+            ypostomove = Random.Range(-100, 101);
 
         }
         xpos = (float)xpostomove + this.transform.position.x;
@@ -170,6 +169,12 @@ public class Boss0 : MonoBehaviour
         gameObject.transform.position = Vector2.MoveTowards(this.transform.position, moveGoal, speed * Time.deltaTime);
     
        
+    }
+
+    public static Vector2 CatmullRomTangent(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t)
+    {
+        return 0.5f * ((-p1 + p3) + 2f * (2f * p1 - 5f * p2 + 4f * p3 - p4) * t + 3f *
+                  (-p1 + 3f * p2 - 3f * p3 + p4) * Mathf.Pow(t, 2f));
     }
 
 }

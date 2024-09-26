@@ -8,6 +8,8 @@ TagManager:
   - New tag
   - player
   - EnemyBullet
+  - ParryBullet
+  - PlayerSprite
   layers:
   - Default
   - TransparentFX

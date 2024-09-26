@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class movement : MonoBehaviour
 {
+    private Vector2 mousePosition;
+
     public GameObject Camera;
 
     public float moveSpeed;
@@ -99,6 +101,7 @@ public class movement : MonoBehaviour
 
 
         moveDirection = new Vector2(moveX, moveY).normalized;
+        mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
 
 
     }
@@ -106,6 +109,9 @@ public class movement : MonoBehaviour
     {
 
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        Vector2 aimDirection = mousePosition - rb.position;
+        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = aimAngle;
 
 
     }
