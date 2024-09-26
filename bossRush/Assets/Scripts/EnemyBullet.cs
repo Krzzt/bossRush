@@ -28,8 +28,12 @@ public class EnemyBullet : MonoBehaviour
         if (collision.gameObject.tag == "player")
         {
             Player playerToHit = collision.gameObject.GetComponent<Player>();
-            playerToHit.TakeDamage(1);
-            Destroy(gameObject);
+            if (!playerToHit.ParryActive)
+            {
+                playerToHit.TakeDamage(1);
+                Destroy(gameObject);
+            }
+
         }
     }
 }

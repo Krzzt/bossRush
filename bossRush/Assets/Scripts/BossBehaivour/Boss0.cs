@@ -24,6 +24,7 @@ public class Boss0 : MonoBehaviour
 
     public bool attack1active;
     public bool attack2active;
+    public bool attack3active;
     public int amountBullets = 0;
     public bool direction;
 
@@ -54,11 +55,11 @@ public class Boss0 : MonoBehaviour
             {
                 if (direction)
                 {
-                    gameObject.transform.Rotate(0, 0, 6);
+                    gameObject.transform.Rotate(0, 0, 4);
                 }
                 else
                 {
-                    gameObject.transform.Rotate(0, 0, -6);
+                    gameObject.transform.Rotate(0, 0, -4);
                 }
                 amountBullets++;
                 GameObject[] bullets = new GameObject[8];
@@ -80,7 +81,13 @@ public class Boss0 : MonoBehaviour
         }
         else if (attack2active)
         {
+
+
             attack2active = false;
+        }
+        else if (attack3active)
+        {
+            attack3active = false;
         }
         else
         {
@@ -119,7 +126,7 @@ public class Boss0 : MonoBehaviour
 
                             case 2:
                                 //move3
-
+                                attack3active = true;
                                 break;
                         }
                         break;
