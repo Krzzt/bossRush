@@ -26,7 +26,7 @@ public class movement : MonoBehaviour
 
     public bool once;
 
-
+    public GameObject playerSprite;
     public SpriteRenderer spriteRenderer;
 
 
@@ -38,7 +38,8 @@ public class movement : MonoBehaviour
         Camera = GameObject.FindWithTag("MainCamera");
         sceneCamera = Camera.GetComponent<Camera>();
         isDashing = false;
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        playerSprite = GameObject.FindWithTag("PlayerSprite");
+        spriteRenderer = playerSprite.GetComponent<SpriteRenderer>();
         PlayerScript = gameObject.GetComponent<Player>();
 
     }
@@ -63,7 +64,7 @@ public class movement : MonoBehaviour
 
             if (isDashing)
         {
-            spriteRenderer.color = new Color(0.776f, 0.909f, 1f);
+            spriteRenderer.color = new Color(0.576f, 0.709f, 0.8f);
 
             if (!once)
             {
@@ -74,7 +75,7 @@ public class movement : MonoBehaviour
             timeDashing += Time.deltaTime;
             if (timeDashing >= timeDashingTime)
             {
-                spriteRenderer.color = new Color(0.376f, 0.753f, 1f);
+                spriteRenderer.color = new Color(1, 1, 1);
                 PlayerScript.invincible = false;
                 isDashing = false;
                 moveSpeed /= 2;
