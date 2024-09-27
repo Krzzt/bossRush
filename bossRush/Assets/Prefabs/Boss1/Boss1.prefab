@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 5436538061994226139}
   - component: {fileID: 1002952533698665035}
   - component: {fileID: 2427991159360706652}
+  - component: {fileID: 2619988792235456995}
   m_Layer: 0
   m_Name: Boss1
   m_TagString: Enemy
@@ -714,6 +715,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2619988792235456995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180929372082078850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a2a25696ea08b41a5154ccff1c19b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossID: 1
+  speed: 1
+  frames: 0
+  currPhase: 1
+  movetimer: 3
+  timebetweenmoves: 0
+  bulletTransform: []
+  bulletPrefab: {fileID: 6270034072450149489, guid: 36e3a8a27c01f694e81711e1d0bf0a1f, type: 3}
+  empty: {fileID: 4051157336803321346, guid: 91ba39b37148ec243971115058f33c16, type: 3}
+  bulletFireForce: 4
+  time: 0
+  attack1active: 0
+  attack2active: 0
+  attack3active: 0
+  amountBullets: 0
+  direction: 0
 --- !u!1 &6594969434799133884
 GameObject:
   m_ObjectHideFlags: 0
