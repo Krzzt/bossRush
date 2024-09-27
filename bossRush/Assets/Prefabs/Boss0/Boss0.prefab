@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  healthIncrease: 195
+  healthIncrease: 495
 --- !u!61 &8549524991569346175
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -409,6 +409,7 @@ MonoBehaviour:
   attack3active: 0
   amountBullets: 0
   direction: 0
+  PlayerPos: {x: 0, y: 0, z: 0}
 --- !u!50 &992186807442536578
 Rigidbody2D:
   serializedVersion: 4
