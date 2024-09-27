@@ -17,7 +17,13 @@ public class Player : MonoBehaviour
     public float ParryCooldown;
     public float ParryTime;
 
-    public SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
+
+    private float TimetoShoot;
+    public float ShootCooldown;
+    public GameObject bulletPrefab;
+    public Transform shootingPoint;
+    public int fireForce;
 
     public GameObject bulletParryPrefab;
     public int parryForce;
@@ -67,11 +73,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        if (Input.GetMouseButtonDown(0))
+        if (TimetoShoot > 0) 
+        {
+            TimetoShoot -= Time.fixedDeltaTime;
+        }
+        if (Input.GetMouseButton(0) && TimetoShoot <= 0)
         {
             Shoot();
+            TimetoShoot = ShootCooldown;
         }
+        
         //MY RIGHT CLICK DOESNT INPUT???
         if (Input.GetKeyDown(KeyCode.Mouse1)){
             Debug.Log("Right Click");
@@ -135,7 +146,8 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-
+        GameObject Bullet = Instantiate(bulletPrefab, shootingPoint.position, gameObject.transform.rotation);
+        Bullet.GetComponent<Rigidbody2D>().AddForce(shootingPoint.up * fireForce, ForceMode2D.Impulse);
     }
 
 

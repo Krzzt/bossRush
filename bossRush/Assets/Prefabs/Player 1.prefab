@@ -393,6 +393,7 @@ Transform:
   m_Children:
   - {fileID: 4195629271820475145}
   - {fileID: 165675896397167448}
+  - {fileID: 7246810142168969329}
   m_Father: {fileID: 8431092507958843995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7057932801211627359
@@ -412,7 +413,7 @@ MonoBehaviour:
   rb: {fileID: 6718519571654805168}
   sceneCamera: {fileID: 0}
   dashcooldown: 0
-  dashcooldownTime: 0.5
+  dashcooldownTime: 0.75
   timeDashing: 0
   timeDashingTime: 0.15
   isDashing: 0
@@ -439,7 +440,10 @@ MonoBehaviour:
   ParryActive: 0
   ParryCooldown: 2
   ParryTime: 0
-  spriteRenderer: {fileID: 0}
+  ShootCooldown: 0.5
+  bulletPrefab: {fileID: 4020020933316259955, guid: 884d1bb40ff2d83499d0c23b4f0508f0, type: 3}
+  shootingPoint: {fileID: 7246810142168969329}
+  fireForce: 6
   bulletParryPrefab: {fileID: 1158347643652952195, guid: eef1b8259d01bd64894e17273a6e72cc, type: 3}
   parryForce: 10
   HeartObjects:
@@ -545,6 +549,37 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 6
+--- !u!1 &7180384335072570031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7246810142168969329}
+  m_Layer: 0
+  m_Name: ShootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7246810142168969329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7180384335072570031}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 7.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3497209867381676362}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8563068271832894320
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +680,7 @@ Transform:
   m_GameObject: {fileID: 8938909932889988118}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5003598, y: 0.28770325, z: 0.06853444}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

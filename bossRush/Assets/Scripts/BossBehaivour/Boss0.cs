@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Boss0 : MonoBehaviour
@@ -31,6 +32,8 @@ public class Boss0 : MonoBehaviour
 
     private int xpostomove = 0;
     private int ypostomove = 0;
+
+    public Vector3 PlayerPos;
     private void Awake()
     {
         PlayerObject = GameObject.FindWithTag("player");
@@ -82,7 +85,6 @@ public class Boss0 : MonoBehaviour
         }
         else if (attack2active)
         {
-            int shotAmount = 0;
 
             time += Time.fixedDeltaTime;
             if (time >= 1.2f)
@@ -97,19 +99,27 @@ public class Boss0 : MonoBehaviour
                  
                 }
 
-
+                amountBullets++;
                 time = 0;
             }
 
-            if (shotAmount >= 6)
+            if (amountBullets >= 6)
             {
+                
                 attack2active = false;
+                amountBullets = 0;
             }
           
         }
         else if (attack3active)
         {
-            attack3active = false;
+           
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, PlayerPos, speed * 4 * Time.fixedDeltaTime);
+            if (gameObject.transform.position == PlayerPos)
+            {
+                attack3active = false;
+            }
+
         }
         else
         {
@@ -148,6 +158,7 @@ public class Boss0 : MonoBehaviour
 
                             case 2:
                                 //move3
+                                PlayerPos = PlayerObject.transform.position;
                                 attack3active = true;
                                 break;
                         }
@@ -182,15 +193,19 @@ public class Boss0 : MonoBehaviour
             ypostomove = Random.Range(-100, 101);
 
         }
-        xpos = (float)xpostomove + this.transform.position.x;
-       // Debug.Log("xpostomove: " + xpostomove);
-       // Debug.Log("currxpos: " + this.transform.position.x);
-       // Debug.Log("Added: " + xpos);
-        ypos = (float)ypostomove + this.transform.position.y;
-        Vector2 moveGoal = new Vector2(xpos, ypos);
-        gameObject.transform.position = Vector2.MoveTowards(this.transform.position, moveGoal, speed * Time.deltaTime);
-    
-       
+        if (!attack3active)
+        {
+            xpos = (float)xpostomove + this.transform.position.x;
+            // Debug.Log("xpostomove: " + xpostomove);
+            // Debug.Log("currxpos: " + this.transform.position.x);
+            // Debug.Log("Added: " + xpos);
+            ypos = (float)ypostomove + this.transform.position.y;
+            Vector2 moveGoal = new Vector2(xpos, ypos);
+            gameObject.transform.position = Vector2.MoveTowards(this.transform.position, moveGoal, speed * Time.fixedDeltaTime);
+
+        }
+
+
     }
 
 

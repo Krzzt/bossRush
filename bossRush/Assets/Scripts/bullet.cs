@@ -7,6 +7,7 @@ public class bullet : MonoBehaviour
     public Player playerScript;
     public GameObject PlayerObject;
 
+    public float lifeTime;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class bullet : MonoBehaviour
             {
                 enemyToDamage.TakeDamage(playerScript.damage);
             }
-
+            Destroy(gameObject);
         }
     }
     // Start is called before the first frame update
@@ -37,8 +38,12 @@ public class bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        lifeTime -= Time.fixedDeltaTime;
+        if (lifeTime <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
