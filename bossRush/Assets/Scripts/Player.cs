@@ -122,9 +122,13 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyBullet" && ParryActive)
         {
-
+            Quaternion oldRotation = collision.gameObject.transform.rotation;
             GameObject parryBullet = Instantiate(bulletParryPrefab, collision.gameObject.transform.position, gameObject.transform.rotation);
             parryBullet.GetComponent<Rigidbody2D>().AddForce(parryBullet.transform.up * parryForce, ForceMode2D.Impulse);
+            if (Mathf.Abs(oldRotation.z) - Mathf.Abs(gameObject.transform.rotation.z) > 90)
+            {
+                parryBullet.transform.rotation = oldRotation;
+            }
             Destroy(collision.gameObject);
         }
     }
