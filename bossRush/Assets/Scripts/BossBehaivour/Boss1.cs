@@ -120,7 +120,7 @@ public class Boss1 : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             gameObject.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
 
-            if (Vector3.Distance(PlayerPos, gameObject.transform.position) > Vector3.Distance(PlayerPos, circle.transform.GetChild(0).transform.position) && !once)
+            if (Vector3.Distance(gameObject.transform.position, circle.transform.GetChild(0).transform.position) >= 0.1f   && !once)
             {
                 gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, circle.transform.GetChild(0).transform.position, Time.fixedDeltaTime * speed * 9);
                 if (time % 0.1f <= 0.05f && time > 1.5f)
@@ -152,6 +152,7 @@ public class Boss1 : MonoBehaviour
            
             if (amountBullets >= 15)
             {
+                Destroy(circle);
                 time = 0;
                 amountBullets = 0;
                 once = false;
@@ -161,6 +162,17 @@ public class Boss1 : MonoBehaviour
         }
         else if (attack3active)
         {
+            GameObject[] bullets = new GameObject[60];
+            for (int i = 0; i < 60; i++)
+            {
+                bullets[i] = Instantiate(bulletPrefab, BulletTransform.position, gameObject.transform.rotation);
+                gameObject.transform.Rotate(0,0,6);
+            }
+            for (int i = 0; i < 60; i++)
+            {
+                bullets[i].GetComponent<Rigidbody2D>().AddForce(bullets[i].transform.up * bulletFireForce, ForceMode2D.Impulse);
+            }
+
             attack3active = false;
             
         }
@@ -222,7 +234,7 @@ public class Boss1 : MonoBehaviour
 
     public void move()
     {
-        if (!attack2active)
+        if (!attack2active || !attack3active)
         {
             Vector2 direction = PlayerObject.transform.position - transform.position;
             direction.Normalize();
