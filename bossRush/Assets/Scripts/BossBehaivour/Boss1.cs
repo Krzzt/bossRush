@@ -17,7 +17,7 @@ public class Boss1 : MonoBehaviour
     public float movetimer;
     public float timebetweenmoves;
 
-    public Transform[] bulletTransform;
+    public Transform BulletTransform;
 
     public GameObject bulletPrefab;
 
@@ -39,6 +39,7 @@ public class Boss1 : MonoBehaviour
     private Vector3 PlayerPos;
 
     private GameObject circle;
+    public bool once;
     private void Awake()
     {
         PlayerObject = GameObject.FindWithTag("player");
@@ -113,32 +114,47 @@ public class Boss1 : MonoBehaviour
 
             time += Time.fixedDeltaTime;
             PlayerPos = PlayerObject.transform.position;
-            circle.transform.position = gameObject.transform.position;
-            
-            
-            if ( Vector3.Distance(PlayerPos, gameObject.transform.position) > Vector3.Distance(PlayerPos, circle.transform.GetChild(0).transform.position))
+            circle.transform.position = PlayerPos;
+            Vector2 direction = circle.transform.position - gameObject.transform.position;
+            direction.Normalize();
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            gameObject.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+
+            if (Vector3.Distance(PlayerPos, gameObject.transform.position) > Vector3.Distance(PlayerPos, circle.transform.GetChild(0).transform.position) && !once)
             {
-                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, circle.transform.GetChild(0).transform.position, Time.fixedDeltaTime * speed * 4);
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, circle.transform.GetChild(0).transform.position, Time.fixedDeltaTime * speed * 9);
+                if (time % 0.1f <= 0.05f && time > 1.5f)
+                {
+                  
+                    GameObject bulletFire = Instantiate(bulletPrefab, BulletTransform.position, BulletTransform.rotation);
+                    bulletFire.GetComponent<Rigidbody2D>().AddForce(BulletTransform.up * bulletFireForce * 6, ForceMode2D.Impulse);
+                }
+                if (time >= 5)
+                {
+                    attack2active = false;
+                }
 
             }
             else
             {
-                
-                gameObject.transform.position = circle.transform.position;
-                circle.transform.Rotate(0, 0, 5);
-                if (time >= 1)
+                once = true;
+                circle.transform.Rotate(0, 0, 2);
+                gameObject.transform.position = circle.transform.GetChild(0).transform.position;
+                if (time >= Random.Range(0.1f, 0.9f))
                 {
-                    GameObject bulletFire = Instantiate(bulletPrefab, gameObject.transform.position, gameObject.transform.rotation);
-                    bulletFire.GetComponent<Rigidbody2D>().AddForce(bulletFire.transform.up * bulletFireForce, ForceMode2D.Impulse);
+                    GameObject bulletFire = Instantiate(bulletPrefab, BulletTransform.position, BulletTransform.rotation);
+                    bulletFire.GetComponent<Rigidbody2D>().AddForce(BulletTransform.up * bulletFireForce, ForceMode2D.Impulse);
                     amountBullets++;
+                    time = 0;
                 }
 
             }
            
-            if (amountBullets >= 10)
+            if (amountBullets >= 15)
             {
                 time = 0;
                 amountBullets = 0;
+                once = false;
                 attack2active = false;
             }
 
@@ -206,13 +222,13 @@ public class Boss1 : MonoBehaviour
 
     public void move()
     {
-       
+        if (!attack2active)
+        {
             Vector2 direction = PlayerObject.transform.position - transform.position;
             direction.Normalize();
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             gameObject.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
-        if (!attack2active)
-        {
+       
             float xpos = 0;
             float ypos = 0;
             if (frames % Random.Range(20, 60) == 0)

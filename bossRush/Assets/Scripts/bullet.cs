@@ -26,7 +26,7 @@ public class bullet : MonoBehaviour
             }
             else if (gameObject.CompareTag("Bullet"))
             {
-                enemyToDamage.TakeDamage(playerScript.damage);
+                enemyToDamage.TakeDamage(playerScript.damage / 2);
             }
             Destroy(gameObject);
         }
