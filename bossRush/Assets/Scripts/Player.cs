@@ -33,9 +33,12 @@ public class Player : MonoBehaviour
     public GameObject GameOverScreen;
 
     public GameObject PlayerSprite;
+    public Texture2D PlayerArrow;
+
+
     private void Awake()
     {
-        
+
 
         spriteRenderer = PlayerSprite.GetComponent<SpriteRenderer>();
         SetHearts();
@@ -73,6 +76,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (TimetoShoot > 0) 
         {
             TimetoShoot -= Time.fixedDeltaTime;
@@ -82,19 +86,11 @@ public class Player : MonoBehaviour
             Shoot();
             TimetoShoot = ShootCooldown;
         }
-        
-        //MY RIGHT CLICK DOESNT INPUT???
-        if (Input.GetKeyDown(KeyCode.Mouse1)){
-            Debug.Log("Right Click");
-            Debug.Log("current ParryActive state: " + ParryActive);
-            Debug.Log("current Parry Cooldown: " + ParryCooldown);
-        }
-
         if (Input.GetKeyDown(KeyCode.Mouse1) && !ParryActive && ParryCooldown <= 0)
         {
             ParryActive = true;
             ParryTime = 0.5f;
-            ParryCooldown = 2f;
+            ParryCooldown = 1f;
 
         }
         if (ParryActive && ParryTime > 0)
@@ -122,6 +118,8 @@ public class Player : MonoBehaviour
         {
             ParryCooldown -= Time.fixedDeltaTime;
         }
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -141,6 +139,7 @@ public class Player : MonoBehaviour
                 parryBullet.transform.rotation = oldRotation;
             }
             Destroy(collision.gameObject);
+            ParryTime = 0;
         }
     }
 

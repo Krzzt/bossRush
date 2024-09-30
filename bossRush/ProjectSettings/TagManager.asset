@@ -11,6 +11,7 @@ TagManager:
   - ParryBullet
   - PlayerSprite
   - Bullet
+  - Cursor
   layers:
   - Default
   - TransparentFX

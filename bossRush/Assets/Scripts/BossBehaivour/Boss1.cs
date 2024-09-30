@@ -40,6 +40,8 @@ public class Boss1 : MonoBehaviour
 
     private GameObject circle;
     public bool once;
+
+    private GameObject[] bullets;
     private void Awake()
     {
         PlayerObject = GameObject.FindWithTag("player");
@@ -162,18 +164,33 @@ public class Boss1 : MonoBehaviour
         }
         else if (attack3active)
         {
-            GameObject[] bullets = new GameObject[60];
-            for (int i = 0; i < 60; i++)
+            
+            time += Time.fixedDeltaTime;
+            if (time >= 0.02f && amountBullets <= 59)
             {
-                bullets[i] = Instantiate(bulletPrefab, BulletTransform.position, gameObject.transform.rotation);
-                gameObject.transform.Rotate(0,0,6);
+                bullets[amountBullets] = Instantiate(bulletPrefab, BulletTransform.position, gameObject.transform.rotation);
+                
+                gameObject.transform.Rotate(0, 0, 6);
+                amountBullets++;
+                time = 0;
+                
             }
-            for (int i = 0; i < 60; i++)
+            if (amountBullets >= 60)
             {
-                bullets[i].GetComponent<Rigidbody2D>().AddForce(bullets[i].transform.up * bulletFireForce, ForceMode2D.Impulse);
+                for (int i = 0; i < 60; i++)
+                {
+                    
+                    bullets[i].GetComponent<Rigidbody2D>().AddForce(bullets[i].transform.up * bulletFireForce * 2, ForceMode2D.Impulse);
+                }
             }
 
-            attack3active = false;
+            if (amountBullets == 60)
+            {
+                time = 0;
+                amountBullets = 0;
+                attack3active = false;
+            }
+
             
         }
         else
@@ -215,6 +232,7 @@ public class Boss1 : MonoBehaviour
                             case 2:
                                 //move3
                                 PlayerPos = PlayerObject.transform.position;
+                                bullets = new GameObject[60];
                                 attack3active = true;
                                 break;
                         }
@@ -234,7 +252,7 @@ public class Boss1 : MonoBehaviour
 
     public void move()
     {
-        if (!attack2active || !attack3active)
+        if (!attack2active && !attack3active)
         {
             Vector2 direction = PlayerObject.transform.position - transform.position;
             direction.Normalize();
