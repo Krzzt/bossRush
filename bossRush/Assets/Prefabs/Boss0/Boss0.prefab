@@ -329,6 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   healthIncrease: 495
+  ContinueScreen: {fileID: 8134183991418113447, guid: 0d5f89b7a4133424a9477b74359e1ee3, type: 3}
 --- !u!61 &8549524991569346175
 BoxCollider2D:
   m_ObjectHideFlags: 0

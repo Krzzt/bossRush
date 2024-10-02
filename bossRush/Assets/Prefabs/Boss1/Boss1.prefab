@@ -390,6 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   healthIncrease: 495
+  ContinueScreen: {fileID: 8134183991418113447, guid: 0d5f89b7a4133424a9477b74359e1ee3, type: 3}
 --- !u!61 &3933941076956489765
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -549,6 +550,7 @@ MonoBehaviour:
   attack3active: 0
   amountBullets: 0
   direction: 0
+  once: 0
 --- !u!1 &7652688403184411539
 GameObject:
   m_ObjectHideFlags: 0

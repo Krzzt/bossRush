@@ -1,13 +1,14 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
 
-    public List<int> bossIDsToFight = new List<int>(5);
-    public GameObject[] allBosses = new GameObject[5];
+    public List<int> bossIDsToFight = new List<int>(2);
+    public GameObject[] allBosses = new GameObject[2];
     public GameObject BossToSpawn;
     public int currBoss;
 
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
 
         }
         
+        SpawnBoss();
+        
 
     }
     // Start is called before the first frame update
@@ -51,5 +54,27 @@ public class GameManager : MonoBehaviour
     {
         BossToSpawn = allBosses[bossIDsToFight[currBoss]];
         GameObject SpawnBoss = Instantiate(BossToSpawn, new Vector3(10,10,0), Quaternion.identity);
+        GameObject FightScene = GameObject.FindWithTag("FightScene");
+        SpawnBoss.transform.SetParent(FightScene.transform, false);
+        SpawnBoss.transform.position = new Vector3(10,10,0);
+    }
+
+
+    public void NextRound()
+    {
+        GameObject BossDefeatedScreen = GameObject.FindWithTag("BossDefeated");
+        Destroy(BossDefeatedScreen);
+        currBoss++;
+        if (currBoss > bossIDsToFight.Count)
+        {
+            //you won
+        }
+        else
+        {
+            GameObject Player = GameObject.FindWithTag("player");
+            Player.transform.position = new Vector3(0, 0, 0);
+            SpawnBoss();
+            
+        }
     }
 }

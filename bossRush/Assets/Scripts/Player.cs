@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     public GameObject GameOverScreen;
 
     public GameObject PlayerSprite;
-    public Texture2D PlayerArrow;
+    private GameObject PlayerArrow;
 
 
     private void Awake()
@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
         spriteRenderer = PlayerSprite.GetComponent<SpriteRenderer>();
         SetHearts();
         Time.timeScale = 1.0f;
+        PlayerArrow = GameObject.FindWithTag("Cursor");
+
 
     }
 
@@ -119,6 +121,21 @@ public class Player : MonoBehaviour
             ParryCooldown -= Time.fixedDeltaTime;
         }
 
+        Vector3 ArrowDirection = GameObject.FindWithTag("Enemy").transform.position - PlayerSprite.transform.position;
+        ArrowDirection.Normalize();
+        PlayerArrow.transform.rotation = new Quaternion(ArrowDirection.x, ArrowDirection.y, ArrowDirection.z, 0);
+        PlayerArrow.transform.Rotate(0, 0, 90);
+
+        if (GameObject.FindWithTag("Enemy").GetComponent<Renderer>().isVisible)
+        {
+            PlayerArrow.SetActive(false);
+        }
+        else
+        {
+            PlayerArrow.SetActive(true);
+        }
+
+               
 
     }
 

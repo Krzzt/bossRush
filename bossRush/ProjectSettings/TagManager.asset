@@ -12,6 +12,8 @@ TagManager:
   - PlayerSprite
   - Bullet
   - Cursor
+  - BossDefeated
+  - FightScene
   layers:
   - Default
   - TransparentFX
