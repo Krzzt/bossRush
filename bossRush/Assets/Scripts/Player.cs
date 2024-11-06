@@ -120,11 +120,11 @@ public class Player : MonoBehaviour
         {
             ParryCooldown -= Time.fixedDeltaTime;
         }
-
+        PlayerArrow.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);
         Vector3 ArrowDirection = GameObject.FindWithTag("Enemy").transform.position - PlayerSprite.transform.position;
         ArrowDirection.Normalize();
         PlayerArrow.transform.rotation = new Quaternion(ArrowDirection.x, ArrowDirection.y, ArrowDirection.z, 0);
-        PlayerArrow.transform.Rotate(0, 0, 90);
+        PlayerArrow.transform.Rotate(0, 0, 270);
 
         if (GameObject.FindWithTag("Enemy").GetComponent<Renderer>().isVisible)
         {

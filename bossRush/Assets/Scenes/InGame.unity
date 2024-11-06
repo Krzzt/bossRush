@@ -450,6 +450,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1370891000}
     m_Modifications:
+    - target: {fileID: 871218845842422210, guid: 6177eb9ae349f314095c5f639ff3e867, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1608617972288317014, guid: 6177eb9ae349f314095c5f639ff3e867, type: 3}
       propertyPath: PlayerSprite
       value: 
@@ -486,6 +490,18 @@ PrefabInstance:
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 533326404}
+    - target: {fileID: 4421113723290766649, guid: 6177eb9ae349f314095c5f639ff3e867, type: 3}
+      propertyPath: m_Sources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421113723290766649, guid: 6177eb9ae349f314095c5f639ff3e867, type: 3}
+      propertyPath: m_Sources.Array.data[0].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421113723290766649, guid: 6177eb9ae349f314095c5f639ff3e867, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 909774685}
     - target: {fileID: 5581128276107988621, guid: 6177eb9ae349f314095c5f639ff3e867, type: 3}
       propertyPath: m_Sources.Array.size
       value: 1
