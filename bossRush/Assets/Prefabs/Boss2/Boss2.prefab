@@ -348,7 +348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Boss 1
+  m_text: Boss 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -432,6 +432,7 @@ GameObject:
   - component: {fileID: 5436538061994226139}
   - component: {fileID: 1002952533698665035}
   - component: {fileID: 2427991159360706652}
+  - component: {fileID: -7807169904563661513}
   m_Layer: 0
   m_Name: Boss2
   m_TagString: Enemy
@@ -654,6 +655,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-7807169904563661513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180929372082078850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753ed52bd3b308a4da46158a1f6e3615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossID: 2
+  speed: 1
+  frames: 0
+  currPhase: 1
+  movetimer: 2
+  timebetweenmoves: 0
+  bulletTransform: []
+  bulletPrefab: {fileID: 6270034072450149489, guid: 54c8f5f5313943b4797fb361f0ecc428, type: 3}
+  bulletFireForce: 4
+  time: 0
+  attack1active: 0
+  attack2active: 0
+  attack3active: 0
+  amountBullets: 0
+  direction: 0
+  PlayerPos: {x: 0, y: 0, z: 0}
 --- !u!1 &6294951429833634640
 GameObject:
   m_ObjectHideFlags: 0

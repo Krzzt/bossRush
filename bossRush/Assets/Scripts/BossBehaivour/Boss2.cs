@@ -16,6 +16,9 @@ public class Boss2 : MonoBehaviour
     public float timebetweenmoves;
 
     public Transform[] bulletTransform;
+    private Vector3[] TeleportVectors = new Vector3[8];
+    private Vector3 currVec;
+    private Vector3 moveTowards;
 
     public GameObject bulletPrefab;
 
@@ -37,6 +40,15 @@ public class Boss2 : MonoBehaviour
     {
         PlayerObject = GameObject.FindWithTag("player");
         currPhase = 1;
+
+        TeleportVectors[0] = PlayerObject.transform.position + new Vector3(30, 0 ,0);
+        TeleportVectors[1] = PlayerObject.transform.position + new Vector3(15, -15, 0);
+        TeleportVectors[2] = PlayerObject.transform.position + new Vector3(0, -30, 0);
+        TeleportVectors[3] = PlayerObject.transform.position + new Vector3(-15, -15, 0);
+        TeleportVectors[4] = PlayerObject.transform.position + new Vector3(-30, 0, 0);
+        TeleportVectors[5] = PlayerObject.transform.position + new Vector3(-15, 15, 0);
+        TeleportVectors[6] = PlayerObject.transform.position + new Vector3(0, 30, 0);
+        TeleportVectors[7] = PlayerObject.transform.position + new Vector3(15, 15, 0);
     }
     // Start is called before the first frame update
     void Start()
@@ -51,15 +63,34 @@ public class Boss2 : MonoBehaviour
         move();
         if (attack1active)
         {
+
+            // DOESNT WORK FOR NOW
             time += Time.fixedDeltaTime;
+            if (time % 0.75f == 0)
+            {
+                Debug.Log("SHOULD START NOW");
+                currVec = TeleportVectors[Random.Range(0, 8)];
+                gameObject.transform.position = currVec;
+                moveTowards = PlayerObject.transform.position - gameObject.transform.position;
+                moveTowards.Normalize();
+            }
+
+           
+            gameObject.transform.position += moveTowards * 0.1f;
         }
         else if (attack2active)
         {
             time += Time.fixedDeltaTime;
+
+            time = 0;
+            attack2active = false;
         }
         else if (attack3active)
         {
             time += Time.deltaTime;
+
+            time = 0;
+            attack3active = false;
         }
         else
         {
@@ -76,18 +107,11 @@ public class Boss2 : MonoBehaviour
 
                     case 1:
                         int moveToDo = Random.Range(0, 3);
+                        Debug.Log("move to do: " + moveToDo);
                         time += Time.fixedDeltaTime;
                         switch (moveToDo)
                         {
                             case 0:
-                                if (Random.Range(0, 2) == 0)
-                                {
-                                    direction = true;
-                                }
-                                else
-                                {
-                                    direction = false;
-                                }
                                 attack1active = true;
                                 break;
 
