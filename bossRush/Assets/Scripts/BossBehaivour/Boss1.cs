@@ -125,13 +125,13 @@ public class Boss1 : MonoBehaviour
             if (Vector3.Distance(gameObject.transform.position, circle.transform.GetChild(0).transform.position) >= 0.1f   && !once)
             {
                 gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, circle.transform.GetChild(0).transform.position, Time.fixedDeltaTime * speed * 9);
-                if (time % 0.1f <= 0.05f && time > 1.5f)
+                if (time % 0.1f <= 0.05f && time > 2f)
                 {
                   
                     GameObject bulletFire = Instantiate(bulletPrefab, BulletTransform.position, BulletTransform.rotation);
                     bulletFire.GetComponent<Rigidbody2D>().AddForce(BulletTransform.up * bulletFireForce * 6, ForceMode2D.Impulse);
                 }
-                if (time >= 5)
+                if (time >= 6)
                 {
                     attack2active = false;
                 }

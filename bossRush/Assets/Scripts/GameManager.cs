@@ -12,8 +12,13 @@ public class GameManager : MonoBehaviour
     public GameObject BossToSpawn;
     public int currBoss;
 
+    public GameObject Store;
+    public GameObject FightScene;
+    public Player PlayerScript;
+
     private void Awake()
     {
+        Store.SetActive(false);
         for (int i = 0; i < bossIDsToFight.Count; i++)
         {
             bossIDsToFight[i] = -1;
@@ -62,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void NextRound()
     {
+        Time.timeScale = 1.0f;
         GameObject BossDefeatedScreen = GameObject.FindWithTag("BossDefeated");
         Destroy(BossDefeatedScreen);
         currBoss++;
@@ -73,8 +79,25 @@ public class GameManager : MonoBehaviour
         {
             GameObject Player = GameObject.FindWithTag("player");
             Player.transform.position = new Vector3(0, 0, 0);
+            PlayerScript.playerHealth._currentHealth = PlayerScript.playerHealth._currentMaxHealth;
+            PlayerScript.SetHearts();
             SpawnBoss();
             
         }
+    }
+
+    public void IncreaseHealth()
+    {
+        PlayerScript.playerHealth.addmaxHealth(1);
+    }
+
+    public void IncreaseDamage()
+    {
+        PlayerScript.damage += 2;
+    }
+
+    public void IncreaseDashTimer()
+    {
+        PlayerScript.TotalParryTime += 0.15f;
     }
 }

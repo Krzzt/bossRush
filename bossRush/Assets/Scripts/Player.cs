@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     public bool ParryActive;
     public float ParryCooldown;
     public float ParryTime;
+    public float TotalParryTime;
 
     private SpriteRenderer spriteRenderer;
 
@@ -28,7 +30,7 @@ public class Player : MonoBehaviour
     public GameObject bulletParryPrefab;
     public int parryForce;
 
-    public GameObject[] HeartObjects = new GameObject[3];
+    public GameObject[] HeartObjects = new GameObject[7];
 
     public GameObject GameOverScreen;
 
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1) && !ParryActive && ParryCooldown <= 0)
         {
             ParryActive = true;
-            ParryTime = 0.5f;
+            ParryTime = TotalParryTime;
             ParryCooldown = 1f;
 
         }
@@ -169,7 +171,7 @@ public class Player : MonoBehaviour
 
     public void SetHearts()
     {
-        for (int i = 0; i < playerHealth._currentMaxHealth; i++)
+        for (int i = 0; i < HeartObjects.Length; i++)
         {
             if (playerHealth._currentHealth > i)
             {
@@ -181,4 +183,6 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+
 }

@@ -39,6 +39,13 @@ public class Enemy : MonoBehaviour
     }
 
 
+
+    public void KillEnemy()
+    {
+        TakeDamage(EnemyHealth._currentHealth);
+    }
+
+
   
 
 
