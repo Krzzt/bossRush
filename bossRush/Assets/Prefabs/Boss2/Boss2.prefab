@@ -522,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 1
+  playerScript: {fileID: 0}
   healthIncrease: 495
   ContinueScreen: {fileID: 8134183991418113447, guid: 0d5f89b7a4133424a9477b74359e1ee3, type: 3}
 --- !u!61 &3933941076956489765
@@ -673,7 +674,9 @@ MonoBehaviour:
   currPhase: 1
   movetimer: 2
   timebetweenmoves: 0
-  bulletTransform: []
+  bulletTransform:
+  - {fileID: 4331877578703126540}
+  - {fileID: 4331877578703126540}
   bulletPrefab: {fileID: 6270034072450149489, guid: 54c8f5f5313943b4797fb361f0ecc428, type: 3}
   bulletFireForce: 4
   time: 0
@@ -842,7 +845,7 @@ Transform:
   m_GameObject: {fileID: 7652688403184411539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.5149999, y: 0, z: 0}
+  m_LocalPosition: {x: -0.56, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

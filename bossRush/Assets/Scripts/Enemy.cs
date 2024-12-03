@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private HPBar HealthBar;
     private GameObject PlayerObject;
     Transform PlayerTransform;
+    public Player playerScript;
 
     public int healthIncrease;
 
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
         HealthBar = gameObject.GetComponent<HPBar>();
 
         PlayerObject = GameObject.FindWithTag("player");
+        playerScript = PlayerObject.GetComponent<Player>();
         PlayerTransform = PlayerObject.transform;
     }
     public void TakeDamage(int amount)
@@ -45,8 +47,15 @@ public class Enemy : MonoBehaviour
         TakeDamage(EnemyHealth._currentHealth);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("player"))
+        {
+            playerScript.TakeDamage(1);
+        }
+    }
 
-  
+
 
 
 

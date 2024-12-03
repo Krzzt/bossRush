@@ -15,6 +15,7 @@ public class Boss2 : MonoBehaviour
     public float movetimer;
     public float timebetweenmoves;
 
+
     public Transform[] bulletTransform;
     private Vector3[] TeleportVectors = new Vector3[8];
     private Vector3 currVec;
@@ -41,14 +42,7 @@ public class Boss2 : MonoBehaviour
         PlayerObject = GameObject.FindWithTag("player");
         currPhase = 1;
 
-        TeleportVectors[0] = PlayerObject.transform.position + new Vector3(30, 0 ,0);
-        TeleportVectors[1] = PlayerObject.transform.position + new Vector3(15, -15, 0);
-        TeleportVectors[2] = PlayerObject.transform.position + new Vector3(0, -30, 0);
-        TeleportVectors[3] = PlayerObject.transform.position + new Vector3(-15, -15, 0);
-        TeleportVectors[4] = PlayerObject.transform.position + new Vector3(-30, 0, 0);
-        TeleportVectors[5] = PlayerObject.transform.position + new Vector3(-15, 15, 0);
-        TeleportVectors[6] = PlayerObject.transform.position + new Vector3(0, 30, 0);
-        TeleportVectors[7] = PlayerObject.transform.position + new Vector3(15, 15, 0);
+
     }
     // Start is called before the first frame update
     void Start()
@@ -66,24 +60,68 @@ public class Boss2 : MonoBehaviour
 
             // DOESNT WORK FOR NOW
             time += Time.fixedDeltaTime;
-            if (time % 0.75f == 0)
+            if (time % 2f <= 0.05)
             {
-                Debug.Log("SHOULD START NOW");
+                TeleportVectors[0] = PlayerObject.transform.position + new Vector3(8, 0, 0);
+                TeleportVectors[1] = PlayerObject.transform.position + new Vector3(4, -4, 0);
+                TeleportVectors[2] = PlayerObject.transform.position + new Vector3(0, -8, 0);
+                TeleportVectors[3] = PlayerObject.transform.position + new Vector3(-4, -4, 0);
+                TeleportVectors[4] = PlayerObject.transform.position + new Vector3(-8, 0, 0);
+                TeleportVectors[5] = PlayerObject.transform.position + new Vector3(-4, 4, 0);
+                TeleportVectors[6] = PlayerObject.transform.position + new Vector3(0, 8, 0);
+                TeleportVectors[7] = PlayerObject.transform.position + new Vector3(4, 4, 0);
                 currVec = TeleportVectors[Random.Range(0, 8)];
                 gameObject.transform.position = currVec;
                 moveTowards = PlayerObject.transform.position - gameObject.transform.position;
                 moveTowards.Normalize();
+
             }
 
            
-            gameObject.transform.position += moveTowards * 0.1f;
+            gameObject.transform.position += (moveTowards * 0.15f);
+
+
+            if (time >= 13f)
+            {
+                time = 0;
+                attack1active = false;
+            }
         }
         else if (attack2active)
         {
             time += Time.fixedDeltaTime;
+            if (time % 1.5f <= 0.05f)
+            {
+                TeleportVectors[0] = PlayerObject.transform.position + new Vector3(8, 0, 0);
+                TeleportVectors[1] = PlayerObject.transform.position + new Vector3(4, -4, 0);
+                TeleportVectors[2] = PlayerObject.transform.position + new Vector3(0, -8, 0);
+                TeleportVectors[3] = PlayerObject.transform.position + new Vector3(-4, -4, 0);
+                TeleportVectors[4] = PlayerObject.transform.position + new Vector3(-8, 0, 0);
+                TeleportVectors[5] = PlayerObject.transform.position + new Vector3(-4, 4, 0);
+                TeleportVectors[6] = PlayerObject.transform.position + new Vector3(0, 8, 0);
+                TeleportVectors[7] = PlayerObject.transform.position + new Vector3(4, 4, 0);
+                currVec = TeleportVectors[Random.Range(0, 8)];
+                gameObject.transform.position = currVec;
+                Vector2 direction = PlayerObject.transform.position - transform.position;
+                direction.Normalize();
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                gameObject.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+                GameObject[] bullets = new GameObject[7];
+                gameObject.transform.Rotate(0, 0, -108);
+                for (int i = 0; i < 6; i++)
+                {
+                    bullets[i] = Instantiate(bulletPrefab, bulletTransform[1].position, gameObject.transform.rotation);
+                    bullets[i].GetComponent<Rigidbody2D>().AddForce(bullets[i].transform.up * bulletFireForce * 2, ForceMode2D.Impulse);
+                    gameObject.transform.Rotate(0, 0, 6);
+                }
 
-            time = 0;
-            attack2active = false;
+            }
+            if (time >= 9)
+            {
+                time = 0;
+                attack2active = false;
+            }
+
         }
         else if (attack3active)
         {
