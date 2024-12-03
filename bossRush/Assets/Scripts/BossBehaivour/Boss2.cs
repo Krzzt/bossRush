@@ -60,7 +60,7 @@ public class Boss2 : MonoBehaviour
 
             // DOESNT WORK FOR NOW
             time += Time.fixedDeltaTime;
-            if (time % 2f <= 0.05)
+            if (time % 2f <= 0.03)
             {
                 TeleportVectors[0] = PlayerObject.transform.position + new Vector3(8, 0, 0);
                 TeleportVectors[1] = PlayerObject.transform.position + new Vector3(4, -4, 0);
@@ -90,7 +90,7 @@ public class Boss2 : MonoBehaviour
         else if (attack2active)
         {
             time += Time.fixedDeltaTime;
-            if (time % 1.5f <= 0.05f)
+            if (time % 1.5f <= 0.03f)
             {
                 TeleportVectors[0] = PlayerObject.transform.position + new Vector3(8, 0, 0);
                 TeleportVectors[1] = PlayerObject.transform.position + new Vector3(4, -4, 0);
@@ -180,19 +180,21 @@ public class Boss2 : MonoBehaviour
 
     public void move()
     {
+        if (!attack1active && !attack2active)
+        {
             Vector2 direction = PlayerObject.transform.position - transform.position;
             direction.Normalize();
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             gameObject.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
-        
-        float xpos = 0;
-        float ypos = 0;
-        if (frames % Random.Range(20, 60) == 0)
-        {
-            xpostomove = Random.Range(-100, 101);
-            ypostomove = Random.Range(-100, 101);
 
-        }
+            float xpos = 0;
+            float ypos = 0;
+            if (frames % Random.Range(20, 60) == 0)
+            {
+                xpostomove = Random.Range(-100, 101);
+                ypostomove = Random.Range(-100, 101);
+
+            }
             xpos = (float)xpostomove + this.transform.position.x;
             // Debug.Log("xpostomove: " + xpostomove);
             // Debug.Log("currxpos: " + this.transform.position.x);
@@ -201,6 +203,8 @@ public class Boss2 : MonoBehaviour
             Vector2 moveGoal = new Vector2(xpos, ypos);
             gameObject.transform.position = Vector2.MoveTowards(this.transform.position, moveGoal, speed * Time.fixedDeltaTime);
 
+
+        }
 
     }
 

@@ -55,6 +55,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("player"))
+        {
+            playerScript.TakeDamage(1);
+        }
+    }
+
 
 
 
