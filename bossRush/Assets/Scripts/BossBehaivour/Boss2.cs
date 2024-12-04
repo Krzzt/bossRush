@@ -37,6 +37,8 @@ public class Boss2 : MonoBehaviour
     private int ypostomove = 0;
 
     public Vector3 PlayerPos;
+
+    public GameObject Cage;
     private void Awake()
     {
         PlayerObject = GameObject.FindWithTag("player");
@@ -83,6 +85,11 @@ public class Boss2 : MonoBehaviour
 
             if (time >= 13f)
             {
+                GameObject currCage = GameObject.FindWithTag("Cage");
+                if (currCage != null)
+                {
+                    Destroy(currCage);
+                }
                 time = 0;
                 attack1active = false;
             }
@@ -118,6 +125,11 @@ public class Boss2 : MonoBehaviour
             }
             if (time >= 9)
             {
+                GameObject currCage = GameObject.FindWithTag("Cage");
+                if (currCage != null)
+                {
+                    Destroy(currCage);
+                }
                 time = 0;
                 attack2active = false;
             }
@@ -127,8 +139,14 @@ public class Boss2 : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            time = 0;
-            attack3active = false;
+            if (time > 3)
+            {
+                GameObject currCage = Instantiate(Cage, PlayerPos, Quaternion.identity);
+                time = 0;
+                attack3active = false;
+            }
+
+
         }
         else
         {

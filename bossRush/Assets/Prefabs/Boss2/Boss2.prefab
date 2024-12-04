@@ -686,6 +686,7 @@ MonoBehaviour:
   amountBullets: 0
   direction: 0
   PlayerPos: {x: 0, y: 0, z: 0}
+  Cage: {fileID: 186310574170617249, guid: 52ce57afca72fc54489130107d688d95, type: 3}
 --- !u!1 &6294951429833634640
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7727226537492149411}
   - component: {fileID: 6286568687699143820}
   - component: {fileID: 7001178255300058093}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: heart0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4408749728723243487}
   - component: {fileID: 2991897221810657010}
   - component: {fileID: 2584713833961155268}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: heart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 4195629271820475145}
   - component: {fileID: 84761514158865815}
   - component: {fileID: 8589400255298432313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerSprite
   m_TagString: PlayerSprite
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 257728273331082789}
   - component: {fileID: 2457163994868540546}
   - component: {fileID: 7141074069274532671}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: PlayerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 5226499355598166984}
   - component: {fileID: 1034641157777518491}
   - component: {fileID: 871218845842422210}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cursor
   m_TagString: Cursor
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2014141079658544691}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Hearts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 8493014028379612591}
   - component: {fileID: 4111031659690533975}
   - component: {fileID: 8360406306063148687}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: heart5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 6718519571654805168}
   - component: {fileID: 6439589540016213506}
   - component: {fileID: 3210163280728529579}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerController
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 8335848295286800642}
   - component: {fileID: 2344598364965417149}
   - component: {fileID: 7538221796904582472}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: heart3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -868,7 +868,7 @@ GameObject:
   - component: {fileID: 4998954409857402196}
   - component: {fileID: 7328885568613031790}
   - component: {fileID: 1088367861512637087}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: heart6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 4777128030015226395}
   - component: {fileID: 2887206701178314197}
   - component: {fileID: 301447300408877180}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: heart4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7246810142168969329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 8080915945752091663}
   - component: {fileID: 3553327004052268615}
   - component: {fileID: 3376347733108732975}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: heart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
