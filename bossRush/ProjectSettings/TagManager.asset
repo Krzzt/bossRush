@@ -17,6 +17,7 @@ TagManager:
   - Store
   - GameManager
   - Cage
+  - Scythe
   layers:
   - Default
   - TransparentFX

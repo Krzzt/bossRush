@@ -1,8 +1,11 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss2 : MonoBehaviour
+
+// Scythe Color: FF0900 / (255, 9 , 0)
+public class Boss3 : MonoBehaviour
 {
     public int bossID;
 
@@ -37,12 +40,14 @@ public class Boss2 : MonoBehaviour
     private int ypostomove = 0;
 
     public Vector3 PlayerPos;
-
-    public GameObject Cage;
+    public GameObject Scythe;
+    public bool ScytheDamage;
     private void Awake()
     {
         PlayerObject = GameObject.FindWithTag("player");
         currPhase = 1;
+        Scythe.SetActive(false);
+        ScytheDamage = false;
 
 
     }
@@ -60,91 +65,43 @@ public class Boss2 : MonoBehaviour
         if (attack1active)
         {
 
-            // DOESNT WORK FOR NOW
             time += Time.fixedDeltaTime;
-            if (time % 2f <= 0.03)
-            {
-                TeleportVectors[0] = PlayerObject.transform.position + new Vector3(8, 0, 0);
-                TeleportVectors[1] = PlayerObject.transform.position + new Vector3(4, -4, 0);
-                TeleportVectors[2] = PlayerObject.transform.position + new Vector3(0, -8, 0);
-                TeleportVectors[3] = PlayerObject.transform.position + new Vector3(-4, -4, 0);
-                TeleportVectors[4] = PlayerObject.transform.position + new Vector3(-8, 0, 0);
-                TeleportVectors[5] = PlayerObject.transform.position + new Vector3(-4, 4, 0);
-                TeleportVectors[6] = PlayerObject.transform.position + new Vector3(0, 8, 0);
-                TeleportVectors[7] = PlayerObject.transform.position + new Vector3(4, 4, 0);
-                currVec = TeleportVectors[Random.Range(0, 8)];
-                gameObject.transform.position = currVec;
-                moveTowards = PlayerObject.transform.position - gameObject.transform.position;
-                moveTowards.Normalize();
+            Scythe.SetActive(true);
+            SpriteRenderer Scythesprite = Scythe.GetComponent<SpriteRenderer>();
+            Scythesprite.color = new Color(1, 1, 1);
 
+            if ( time >= 2.5f)
+            {
+                Scythesprite.color = new Color(1, 9 / 256, 0);
+                ScytheDamage = true;
             }
 
-           
-            gameObject.transform.position += (moveTowards * 0.15f);
-
-
-            if (time >= 13f)
+            if (time >= 5)
             {
-                GameObject currCage = GameObject.FindWithTag("Cage");
-                if (currCage != null)
-                {
-                    Destroy(currCage);
-                }
+                ScytheDamage = false;
+                Scythe.SetActive(false);
                 time = 0;
                 attack1active = false;
             }
+
+        
         }
         else if (attack2active)
         {
             time += Time.fixedDeltaTime;
-            if (time % 1.5f <= 0.03f)
-            {
-                TeleportVectors[0] = PlayerObject.transform.position + new Vector3(10, 0, 0);
-                TeleportVectors[1] = PlayerObject.transform.position + new Vector3(5, -5, 0);
-                TeleportVectors[2] = PlayerObject.transform.position + new Vector3(0, -10, 0);
-                TeleportVectors[3] = PlayerObject.transform.position + new Vector3(-5, -5, 0);
-                TeleportVectors[4] = PlayerObject.transform.position + new Vector3(-10, 0, 0);
-                TeleportVectors[5] = PlayerObject.transform.position + new Vector3(-5, 5, 0);
-                TeleportVectors[6] = PlayerObject.transform.position + new Vector3(0, 10, 0);
-                TeleportVectors[7] = PlayerObject.transform.position + new Vector3(5, 5, 0);
-                currVec = TeleportVectors[Random.Range(0, 8)];
-                gameObject.transform.position = currVec;
-                Vector2 direction = PlayerObject.transform.position - transform.position;
-                direction.Normalize();
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                gameObject.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
-                GameObject[] bullets = new GameObject[7];
-                gameObject.transform.Rotate(0, 0, -108);
-                for (int i = 0; i < 6; i++)
-                {
-                    bullets[i] = Instantiate(bulletPrefab, bulletTransform[1].position, gameObject.transform.rotation);
-                    bullets[i].GetComponent<Rigidbody2D>().AddForce(bullets[i].transform.up * bulletFireForce * 2, ForceMode2D.Impulse);
-                    gameObject.transform.Rotate(0, 0, 6);
-                }
 
-            }
-            if (time >= 9)
-            {
-                GameObject currCage = GameObject.FindWithTag("Cage");
-                if (currCage != null)
-                {
-                    Destroy(currCage);
-                }
                 time = 0;
                 attack2active = false;
-            }
+            
 
         }
         else if (attack3active)
         {
             time += Time.deltaTime;
 
-            if (time > 3)
-            {
-                GameObject currCage = Instantiate(Cage, PlayerPos, Quaternion.identity);
                 time = 0;
                 attack3active = false;
-            }
+            
 
 
         }
