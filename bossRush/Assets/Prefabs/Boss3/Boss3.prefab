@@ -348,7 +348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Boss 2
+  m_text: Boss 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -432,9 +432,9 @@ GameObject:
   - component: {fileID: 5436538061994226139}
   - component: {fileID: 1002952533698665035}
   - component: {fileID: 2427991159360706652}
-  - component: {fileID: -7807169904563661513}
+  - component: {fileID: -3223344573602062063}
   m_Layer: 0
-  m_Name: Boss2
+  m_Name: Boss3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -657,7 +657,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-7807169904563661513
+--- !u!114 &-3223344573602062063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -666,20 +666,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6180929372082078850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753ed52bd3b308a4da46158a1f6e3615, type: 3}
+  m_Script: {fileID: 11500000, guid: 40ce8a638508cab43949b6b3e6cbcf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bossID: 3
   speed: 1
   frames: 0
   currPhase: 1
-  movetimer: 2
+  movetimer: 3
   timebetweenmoves: 0
-  bulletTransform:
-  - {fileID: 4331877578703126540}
-  - {fileID: 4331877578703126540}
-  bulletPrefab: {fileID: 6270034072450149489, guid: 37217128c6bedb84c8ef44a9b1fa694d, type: 3}
-  bulletFireForce: 4
+  bulletTransform: []
+  bulletPrefab: {fileID: 0}
+  bulletFireForce: 5
   time: 0
   attack1active: 0
   attack2active: 0
@@ -687,7 +685,9 @@ MonoBehaviour:
   amountBullets: 0
   direction: 0
   PlayerPos: {x: 0, y: 0, z: 0}
-  Cage: {fileID: 7306420825845032823}
+  Scythe: {fileID: 7306420825845032823}
+  ScytheDamage: 0
+  Bomb: {fileID: 7127256737884182995, guid: e9b697a486b453240b02978cd1f070a8, type: 3}
 --- !u!1 &6294951429833634640
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +833,7 @@ GameObject:
   - component: {fileID: 7681307498253376784}
   - component: {fileID: 2466840979318048802}
   - component: {fileID: 2562097298414058188}
+  - component: {fileID: 7796599211582184440}
   m_Layer: 0
   m_Name: Scythe
   m_TagString: Scythe
@@ -849,7 +850,7 @@ Transform:
   m_GameObject: {fileID: 7306420825845032823}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.55, y: 0, z: 0}
+  m_LocalPosition: {x: 0.549, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -942,6 +943,18 @@ CapsuleCollider2D:
   m_Offset: {x: 3.5406345e-10, y: 0.0039601335}
   m_Size: {x: 1.0000002, y: 0.9611957}
   m_Direction: 1
+--- !u!114 &7796599211582184440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7306420825845032823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1a0d21d9eb3834b9123cf33474899c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7652688403184411539
 GameObject:
   m_ObjectHideFlags: 0

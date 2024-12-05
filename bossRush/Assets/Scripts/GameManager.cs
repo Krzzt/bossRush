@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public List<int> bossIDsToFight = new List<int>(3);
+    public List<int> bossIDsToFight = new List<int>(4);
     public GameObject[] allBosses = new GameObject[3];
     public GameObject BossToSpawn;
     public int currBoss;
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
         }
         
-        SpawnBoss();
+       // SpawnBoss();
         
 
     }

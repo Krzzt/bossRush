@@ -42,6 +42,8 @@ public class Boss3 : MonoBehaviour
     public Vector3 PlayerPos;
     public GameObject Scythe;
     public bool ScytheDamage;
+
+    public GameObject Bomb;
     private void Awake()
     {
         PlayerObject = GameObject.FindWithTag("player");
@@ -70,7 +72,13 @@ public class Boss3 : MonoBehaviour
             SpriteRenderer Scythesprite = Scythe.GetComponent<SpriteRenderer>();
             Scythesprite.color = new Color(1, 1, 1);
 
-            if ( time >= 2.5f)
+            Vector2 direction = PlayerObject.transform.position - transform.position;
+            direction.Normalize();
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            gameObject.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            gameObject.transform.position = Vector2.MoveTowards(this.transform.position, PlayerObject.transform.position, 3 *  speed * Time.fixedDeltaTime);
+
+            if ( time >= 1.5f)
             {
                 Scythesprite.color = new Color(1, 9 / 256, 0);
                 ScytheDamage = true;
@@ -90,8 +98,18 @@ public class Boss3 : MonoBehaviour
         {
             time += Time.fixedDeltaTime;
 
+
+
+
+           if (time > 1.5f)
+            {
+                //CON>TINUE HEREs
+                GameObject bomb = Instantiate(Bomb, );
+
                 time = 0;
                 attack2active = false;
+            }
+
             
 
         }
