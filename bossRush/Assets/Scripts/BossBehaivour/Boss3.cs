@@ -104,7 +104,7 @@ public class Boss3 : MonoBehaviour
            if (time > 1.5f)
             {
                 //CON>TINUE HEREs
-                GameObject bomb = Instantiate(Bomb, );
+                GameObject bomb = Instantiate(Bomb, PlayerPos + new Vector3(Random.Range(-8,9), Random.Range(-8,9), 0), Quaternion.identity);
 
                 time = 0;
                 attack2active = false;
